@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "269992729673",
+    "firebase_url": "https://kuwait-4bb18.firebaseio.com",
+    "project_id": "kuwait-4bb18",
+    "storage_bucket": "kuwait-4bb18.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269992729673:android:34b701cc78c1b182fbf398",
+        "android_client_info": {
+          "package_name": "com.autipro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "269992729673-s4re09dhnfc63j3l0aqchc0st5chj7o2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.autipro",
+            "certificate_hash": "e41633da159ab7016e23595080b85bae959da374"
+          }
+        },
+        {
+          "client_id": "269992729673-vj9735ikd3c68os8fb2q52vr2gkjgbda.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSpUfTYvx6XvqJ-3cXezQ09Kz_bBT9LCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "269992729673-vj9735ikd3c68os8fb2q52vr2gkjgbda.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
