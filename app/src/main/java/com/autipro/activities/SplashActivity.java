@@ -1,4 +1,4 @@
-package com.autipro;
+package com.autipro.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 

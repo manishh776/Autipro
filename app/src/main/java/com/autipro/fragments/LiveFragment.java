@@ -1,35 +1,44 @@
-package com.autipro;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
+package com.autipro.fragments;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.autipro.helpers.Config;
+import com.autipro.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity {
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
-    private static final String TAG = MainActivity.class.getSimpleName();
+public class LiveFragment extends Fragment {
+
+    private TextView textViewData;
     private ProgressDialog progressDialog;
-    private TextView textView;
+    private final String TAG = "LiveFragment";
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        progressDialog = new ProgressDialog(this);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_live, container, false);
+        initViews(view);
+        return view;
+    }
+
+    private void initViews(View view) {
+        textViewData = view.findViewById(R.id.textViewData);
+        progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Please Wait...");
         progressDialog.setCancelable(false);
 
-        textView = findViewById(R.id.textViewData);
         fetchData();
     }
 
@@ -50,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
-                textView.setText(s.toString());
+                textViewData.setText(s.toString());
             }
 
             @Override

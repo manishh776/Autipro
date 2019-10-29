@@ -1,8 +1,8 @@
 package com.autipro.models;
 
 public class User {
-    private String username, password, email, token;
-    private int age;
+    private String username = "", password = "", email = "", token = "";
+    private String age ;
 
     public User(){
 
@@ -13,7 +13,7 @@ public class User {
         this.password = password;
     }
 
-    public User(String username, String password, String email, String token, int age) {
+    public User(String username, String password, String email, String token, String age) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -37,7 +37,7 @@ public class User {
         return token;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 }

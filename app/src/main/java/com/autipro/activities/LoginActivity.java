@@ -1,4 +1,4 @@
-package com.autipro;
+package com.autipro.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.autipro.R;
 import com.autipro.helpers.Config;
 import com.autipro.models.User;
 import com.autipro.sqlite.KeyValueDb;
@@ -86,6 +87,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void saveAndMovetoMainActivity(String key) {
         KeyValueDb.set(this, Config.USERNAME, usernametxt,1);
+        KeyValueDb.set(this, Config.ID, key,1);
         KeyValueDb.set(this, Config.LOGIN_STATE,"1",1);
         updateToken(key);
         Intent intent = new Intent(this, MainActivity.class);
