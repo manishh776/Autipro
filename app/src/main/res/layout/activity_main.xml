@@ -19,6 +19,9 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        app:cardCornerRadius="15dp"
+        android:paddingTop="13dp"
+        android:paddingBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -107,7 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
-                android:text="Statistics"
+                android:text="Home"
                 app:layout_constraintTop_toBottomOf="@id/stats"
                 app:layout_constraintStart_toStartOf="@id/stats"
                 app:layout_constraintEnd_toEndOf="@id/stats"

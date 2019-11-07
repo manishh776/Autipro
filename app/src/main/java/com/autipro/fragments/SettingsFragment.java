@@ -1,6 +1,5 @@
 package com.autipro.fragments;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,8 +23,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Objects;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -38,7 +35,7 @@ public class SettingsFragment extends Fragment {
     private final String EMPTY_ERROR = "Can't be empty";
     private String user_id;
     private DatabaseReference userRef;
-
+    private EditText loudVoice, running, drowning;
 
     @Nullable
     @Override
@@ -54,7 +51,9 @@ public class SettingsFragment extends Fragment {
         age = view.findViewById(R.id.age);
         password = view.findViewById(R.id.password);
         buttonUpdate = view.findViewById(R.id.buttonUpdate);
-
+        loudVoice = view.findViewById(R.id.loudVoice);
+        running = view.findViewById(R.id.running);
+        drowning = view.findViewById(R.id.drowning);
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Please Wait...");
         progressDialog.setCancelable(false);
@@ -92,10 +91,16 @@ public class SettingsFragment extends Fragment {
         String passwordData = password.getText().toString();
         String ageData = age.getText().toString();
         String emailData = email.getText().toString();
+        String loudVoiceData = loudVoice.getText().toString();
+        String runningData = running.getText().toString();
+        String drowningData = drowning.getText().toString();
         userRef.child("username").setValue(usernameData);
         userRef.child("password").setValue(passwordData);
         userRef.child("age").setValue(ageData);
         userRef.child("email").setValue(emailData);
+        userRef.child("loudVoice").setValue(loudVoiceData);
+        userRef.child("running").setValue(runningData);
+        userRef.child("drowning").setValue(drowningData);
 
         KeyValueDb.set(getActivity(), Config.AGE,ageData,1);
 
@@ -128,13 +133,25 @@ public class SettingsFragment extends Fragment {
             email.setError(EMPTY_ERROR);
             allOkay = false;
         }
+        if(TextUtils.isEmpty(loudVoice.getText())){
+            loudVoice.setError(EMPTY_ERROR);
+            allOkay = false;
+        }
+        if(TextUtils.isEmpty(running.getText())){
+            running.setError(EMPTY_ERROR);
+            allOkay = false;
+        }
+        if(TextUtils.isEmpty(drowning.getText())){
+            drowning.setError(EMPTY_ERROR);
+            allOkay = false;
+        }
 
         return allOkay;
     }
 
     private void fetchUser() {
         progressDialog.show();
-         user_id = KeyValueDb.get(getActivity(), Config.ID,"");
+        user_id = KeyValueDb.get(getActivity(), Config.ID,"");
         userRef = FirebaseDatabase.getInstance().getReference(Config.FIREBASE_USERS).child(user_id);
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -146,6 +163,9 @@ public class SettingsFragment extends Fragment {
                     email.setText(user.getEmail());
                     age.setText(user.getAge() + "");
                     password.setText(user.getPassword());
+                    loudVoice.setText(user.getLoudVoice()+"");
+                    running.setText(user.getRunning()+"");
+                    drowning.setText(user.getDrowning()+"");
                 }else{
                     showToast("User is null");
                 }

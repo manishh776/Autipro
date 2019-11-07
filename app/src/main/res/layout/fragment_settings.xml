@@ -22,9 +22,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="405dp"
+        android:layout_height="wrap_content"
         android:padding="20dp"
         android:background="@color/white"
+
         >
 
         <TextView
@@ -39,6 +40,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="10dp"
             />
 
         <EditText
@@ -52,6 +54,7 @@
             android:hint="Username"
             app:layout_constraintBottom_toTopOf="@+id/email"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
+            android:layout_marginBottom="10dp"
             />
 
         <EditText
@@ -66,6 +69,7 @@
             android:inputType="textEmailAddress"
             app:layout_constraintBottom_toTopOf="@+id/age"
             app:layout_constraintTop_toBottomOf="@+id/username"
+            android:layout_marginBottom="10dp"
             />
 
         <EditText
@@ -80,7 +84,8 @@
             android:inputType="number"
             app:layout_constraintBottom_toTopOf="@+id/password"
             app:layout_constraintTop_toBottomOf="@+id/email"
-            tools:layout_editor_absoluteX="20dp" />
+            android:layout_marginBottom="10dp"
+            />
 
 
         <EditText
@@ -93,8 +98,70 @@
             android:drawableTint="@color/icon_color"
             android:hint="Password"
             android:inputType="textPassword"
-            app:layout_constraintBottom_toTopOf="@+id/buttonUpdate"
+            app:layout_constraintBottom_toTopOf="@+id/loudVoice"
             app:layout_constraintTop_toBottomOf="@+id/age"
+            android:layout_marginBottom="10dp"
+            />
+
+        <EditText
+            android:id="@+id/loudVoice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_back"
+            android:drawableStart="@drawable/ic_surround_sound_black_24dp"
+            android:drawablePadding="20dp"
+            android:drawableTint="@color/icon_color"
+            android:hint="Loud Voice"
+            android:inputType="number"
+            app:layout_constraintBottom_toTopOf="@+id/running"
+            app:layout_constraintTop_toBottomOf="@+id/password"
+            android:layout_marginBottom="10dp"
+            />
+
+        <EditText
+            android:id="@+id/running"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_back"
+            android:drawableStart="@drawable/ic_directions_run_black_24dp"
+            android:drawablePadding="20dp"
+            android:drawableTint="@color/icon_color"
+            android:hint="Running"
+            android:inputType="number"
+            app:layout_constraintBottom_toTopOf="@+id/drowning"
+            app:layout_constraintTop_toBottomOf="@+id/loudVoice"
+            android:layout_marginBottom="10dp"
+            />
+
+        <EditText
+            android:id="@+id/drowning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_back"
+            android:drawableStart="@drawable/ic_drowning"
+            android:drawablePadding="20dp"
+            android:drawableTint="@color/icon_color"
+            android:hint="Drowning"
+            android:inputType="number"
+            app:layout_constraintBottom_toTopOf="@+id/tantrum"
+            app:layout_constraintTop_toBottomOf="@+id/running"
+            android:layout_marginBottom="10dp"
+            />
+
+        <EditText
+            android:id="@+id/tantrum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_back"
+            android:drawableStart="@drawable/ic_tantrum"
+            android:drawablePadding="20dp"
+            android:drawableTint="@color/icon_color"
+            android:hint="Tantrum"
+            android:visibility="gone"
+            android:inputType="number"
+            app:layout_constraintBottom_toTopOf="@+id/buttonUpdate"
+            app:layout_constraintTop_toBottomOf="@+id/drowning"
+            android:layout_marginBottom="10dp"
             />
 
         <Button
@@ -106,7 +173,7 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password"
+            app:layout_constraintTop_toBottomOf="@+id/tantrum"
             tools:layout_editor_absoluteX="20dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

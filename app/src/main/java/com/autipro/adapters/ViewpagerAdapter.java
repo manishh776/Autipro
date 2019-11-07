@@ -1,10 +1,9 @@
 package com.autipro.adapters;
 
 import com.autipro.fragments.ContactUsFragment;
+import com.autipro.fragments.HomeFragment;
 import com.autipro.fragments.LiveFragment;
 import com.autipro.fragments.SettingsFragment;
-import com.autipro.fragments.StatisticsFragment;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -33,7 +32,7 @@ public class ViewpagerAdapter extends FragmentStatePagerAdapter {
                 break;
 
             case 2:
-                fragment = new StatisticsFragment();
+                fragment = new HomeFragment();
                 break;
 
             case 3:
