@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.autipro.R;
@@ -21,11 +22,13 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     private Context context;
     private ArrayList<SensorData> sensorDataArrayList;
     private DataType.Sensor type;
+    private String limit;
 
-    public DataAdapter(Context context, ArrayList<SensorData> sensorDataArrayList, DataType.Sensor type){
+    public DataAdapter(Context context, ArrayList<SensorData> sensorDataArrayList, DataType.Sensor type, String limit){
         this.context = context;
         this.sensorDataArrayList = sensorDataArrayList;
         this.type = type;
+        this.limit = limit;
     }
 
     @NonNull
@@ -41,11 +44,23 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
             String data = null;
             if(type == DataType.Sensor.RUNNING){
                 data = sensorData.getVibration();
+                if(data.equals("Not Runing")){
+                    holder.container.setBackgroundColor(context.getResources().getColor(R.color.red));
+                }
             } else if(type == DataType.Sensor.DROWNING){
                 data = sensorData.getWaterSens();
+                if(data.equals("Not Drowning")){
+                    holder.container.setBackgroundColor(context.getResources().getColor(R.color.red));
+                }
             } else if(type == DataType.Sensor.LOUD_VOICES){
-                data = String.valueOf(sensorData.getSoundDetector());
+                data = sensorData.getSoundDetector();
+                double loudness = Double.parseDouble(data);
+                double loudnessLimit = Double.parseDouble(limit);
+                if(loudness > loudnessLimit){
+                    holder.container.setBackgroundColor(context.getResources().getColor(R.color.red));
+                }
             }
+
             holder.textViewData.setText(data);
             holder.textViewTime.setText(sensorData.getTime());
     }
@@ -58,10 +73,12 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView textViewData, textViewTime;
+        LinearLayout container;
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewData = itemView.findViewById(R.id.data);
             textViewTime = itemView.findViewById(R.id.time);
+            container = itemView.findViewById(R.id.container);
         }
     }
 }

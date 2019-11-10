@@ -15,6 +15,8 @@ import com.autipro.adapters.DataAdapter;
 import com.autipro.helpers.Config;
 import com.autipro.helpers.DataType;
 import com.autipro.models.SensorData;
+import com.autipro.models.User;
+import com.autipro.sqlite.KeyValueDb;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +34,9 @@ public class DataActivity extends AppCompatActivity {
     private ArrayList<SensorData> sensorDataArrayList;
     private TextView nodatatext;
     private DataType.Sensor type;
+    private String loudnessLimit;
+    private String runningLimit, drowningLimit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,11 +63,33 @@ public class DataActivity extends AppCompatActivity {
             }
         });
 
-        fetchData();
+        fetchUserData();
+    }
+
+    private void fetchUserData() {
+        progressDialog.show();
+        String user_id = KeyValueDb.get(this, Config.ID,"");
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference(Config.FIREBASE_USERS).child(user_id);
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                if(user!=null){
+                    loudnessLimit = user.getLoudVoice();
+                    runningLimit = user.getRunning();
+                    drowningLimit = user.getDrowning();
+                    fetchData();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void fetchData() {
-        progressDialog.show();
         DatabaseReference sensorRef = FirebaseDatabase.getInstance().getReference(Config.FIREBASE_SENSORS_DATA);
         sensorRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -81,7 +108,15 @@ public class DataActivity extends AppCompatActivity {
                 }else{
                     recyclerViewData.setVisibility(View.VISIBLE);
                     nodatatext.setVisibility(View.GONE);
-                    dataAdapter = new DataAdapter(DataActivity.this, sensorDataArrayList, type);
+                    String limit = "";
+                    if(type == DataType.Sensor.LOUD_VOICES){
+                        limit = loudnessLimit;
+                    }else if(type == DataType.Sensor.RUNNING){
+                        limit = runningLimit;
+                    }else if(type == DataType.Sensor.DROWNING){
+                        limit = drowningLimit;
+                    }
+                    dataAdapter = new DataAdapter(DataActivity.this, sensorDataArrayList, type, limit);
                     recyclerViewData.setAdapter(dataAdapter);
                 }
             }

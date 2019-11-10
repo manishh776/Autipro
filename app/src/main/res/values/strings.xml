@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AutiPro</string>
+    <string name="msg_subscribed">Subscribed successfully</string>
+    <string name="msg_subscribe_failed">Subscription failed</string>
+    <string name="channel_name">AutiPri</string>
+    <string name="channel_description">AutiProDesc</string>
 </resources>
