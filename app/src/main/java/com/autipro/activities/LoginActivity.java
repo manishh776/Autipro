@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 for(DataSnapshot ds: dataSnapshot.getChildren()){
                     User user = ds.getValue(User.class);
                     if(user!=null){
-                        if(user.getUsername().equals(usernametxt) && user.getPassword().equals(passwordtxt)){
+                        if(user.getUsername().contains(usernametxt) && user.getPassword().equals(passwordtxt)){
                             saveAndMovetoMainActivity(ds.getKey());
                             Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
                             return;
@@ -98,6 +98,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void updateToken(String key) {
         String token = KeyValueDb.get(this, Config.TOKEN,"");
         DatabaseReference ds = FirebaseDatabase.getInstance().getReference(Config.FIREBASE_USERS).child(key);
+        if(usernametxt.equals("admin"))
         ds.child("token").setValue(token);
     }
 

@@ -2,6 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.autipro">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="false"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,6 +24,7 @@
         <activity android:name=".activities.NotificationActivity"></activity>
         <activity android:name=".DataActivity" />
         <activity android:name=".activities.LoginActivity" />
+        <service android:name=".video.push.SinchService"/>
         <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
@@ -30,6 +43,11 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+        <activity android:name=".video.push.CallScreenActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity android:name=".video.push.IncomingCallScreenActivity" android:screenOrientation="portrait"
+            android:noHistory="true"/>
+        <activity android:name=".video.push.PlaceCallActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
