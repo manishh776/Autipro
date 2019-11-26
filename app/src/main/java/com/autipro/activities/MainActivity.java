@@ -108,6 +108,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         if(view == settings){
             viewPager.setCurrentItem(SETTINGS);
         } else if(view == live){
+            username = KeyValueDb.get(this, Config.USERNAME,"");
+            if(username.equals("admin"))
             openPlaceCallActivity();
         }else if(view == statistics){
             viewPager.setCurrentItem(STATS);
