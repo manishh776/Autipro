@@ -81,7 +81,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         getSinchServiceInterface().setStartListener(this);
         if (!getSinchServiceInterface().isStarted()) {
             sinchLogin();
-            progressDialog.show();
+            //progressDialog.show();
             Log.d(TAG, "openPlaceCallActivity not started");
         }
     }
@@ -186,6 +186,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public void onStarted() {
         Log.d(TAG, "onStarted");
-        progressDialog.dismiss();
+        //progressDialog.dismiss();
     }
 }
