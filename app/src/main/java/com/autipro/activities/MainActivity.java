@@ -166,7 +166,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     grantResults[4] == PackageManager.PERMISSION_GRANTED
             ) {
                 //Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
-                //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
                 }else{
                     Log.e(TAG,"in permissions map is null");
                 }
