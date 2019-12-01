@@ -49,7 +49,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
                 }
             } else if(type == DataType.Sensor.DROWNING){
                 data = sensorData.getWaterSens();
-                if(data.equals("Not Drowning")){
+                if(data!= null && data.equals("Not Drowning")){
                     holder.container.setBackgroundColor(context.getResources().getColor(R.color.red));
                 }
             } else if(type == DataType.Sensor.LOUD_VOICES){

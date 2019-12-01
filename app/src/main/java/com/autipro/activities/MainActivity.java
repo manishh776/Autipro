@@ -1,11 +1,5 @@
 package com.autipro.activities;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.ViewPager;
-
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -25,12 +19,12 @@ import com.autipro.sqlite.KeyValueDb;
 import com.autipro.video.push.BaseActivity;
 import com.autipro.video.push.PlaceCallActivity;
 import com.autipro.video.push.SinchService;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.sinch.android.rtc.SinchError;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener,  SinchService.StartFailedListener {
 
@@ -63,7 +57,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         else
             viewPager.setCurrentItem(1);
        // fetchData();
-
         settings = findViewById(R.id.settings);
         live = findViewById(R.id.live);
         statistics = findViewById(R.id.stats);
@@ -81,7 +74,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         getSinchServiceInterface().setStartListener(this);
         if (!getSinchServiceInterface().isStarted()) {
             sinchLogin();
-            //progressDialog.show();
+            progressDialog.show();
+         //   Toast.makeText(this, "onServiceConnected", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "openPlaceCallActivity not started");
         }
     }
@@ -100,7 +94,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         }
         if (!getSinchServiceInterface().isStarted()) {
             getSinchServiceInterface().startClient();
+            Log.d(TAG, "SinchService StartClient");
         }
+        progressDialog.dismiss();
+        Log.d(TAG, "sinchLogin done");
     }
 
     @Override
@@ -122,6 +119,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         Log.d(TAG, "openPlaceCallActivity");
         if (!getSinchServiceInterface().isStarted()) {
             sinchLogin();
+            Toast.makeText(this, "Please try after sometime", Toast.LENGTH_SHORT).show();
             progressDialog.show();
             Log.d(TAG, "openPlaceCallActivity not started");
         } else {
@@ -168,7 +166,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     grantResults[4] == PackageManager.PERMISSION_GRANTED
             ) {
                 //Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+                //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
                 }else{
                     Log.e(TAG,"in permissions map is null");
                 }
@@ -181,11 +179,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public void onStartFailed(SinchError error) {
         Log.d(TAG, "onStartFailed" + error.getMessage());
+        progressDialog.dismiss();
     }
 
     @Override
     public void onStarted() {
         Log.d(TAG, "onStarted");
-        //progressDialog.dismiss();
+      //  Toast.makeText(this, "onStarted", Toast.LENGTH_SHORT).show();
+        progressDialog.dismiss();
     }
 }

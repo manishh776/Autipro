@@ -187,6 +187,8 @@ public class CallScreenActivity extends BaseActivity {
     }
     private void addRemoteView() {
         if (mRemoteVideoViewAdded || getSinchServiceInterface() == null) {
+            if(getSinchServiceInterface() == null)
+                Toast.makeText(this, "sinch interface null", Toast.LENGTH_SHORT).show();
             return; //early
         }
         final VideoController vc = getSinchServiceInterface().getVideoController();
