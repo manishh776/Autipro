@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/add"
+                app:layout_constraintEnd_toStartOf="@+id/aboutUs"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/settings"
                 app:layout_constraintTop_toTopOf="parent"
@@ -79,18 +79,20 @@
                 app:layout_constraintEnd_toEndOf="@id/live"
                 />
 
-            <ImageButton
-                android:id="@+id/add"
+            <TextView
+                android:id="@+id/aboutUs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/stats"
                 app:layout_constraintHorizontal_bias="0.5"
-                android:tint="#77e1f6"
+                android:drawableTint="@color/grey"
+                android:drawableTop="@drawable/about_us_layer"
+                android:text="About Us"
                 app:layout_constraintStart_toEndOf="@+id/live"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_add_circle_black_24dp" />
+                />
 
             <ImageButton
                 android:id="@+id/stats"
@@ -100,7 +102,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/contactUs"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/add"
+                app:layout_constraintStart_toEndOf="@+id/aboutUs"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_assessment_black_24dp"
                 android:tint="@color/grey"

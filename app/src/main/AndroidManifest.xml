@@ -24,6 +24,7 @@
         <activity android:name=".activities.NotificationActivity"></activity>
         <activity android:name=".DataActivity" />
         <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".LineChartActivity"/>
         <service android:name=".video.push.SinchService"/>
         <activity
             android:name=".activities.SplashActivity"

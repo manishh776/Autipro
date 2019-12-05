@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -36,6 +37,8 @@ public class DataActivity extends AppCompatActivity {
     private DataType.Sensor type;
     private String loudnessLimit;
     private String runningLimit, drowningLimit;
+    private TextView charts;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class DataActivity extends AppCompatActivity {
         recyclerViewData.setLayoutManager(new LinearLayoutManager(this));
         textViewTitle = findViewById(R.id.title);
         nodatatext = findViewById(R.id.nodatatext);
+        charts = findViewById(R.id.charts);
 
         type = (DataType.Sensor) getIntent().getSerializableExtra("type");
         if (type != null)
@@ -62,7 +66,16 @@ public class DataActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+        charts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DataActivity.this, LineChartActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("data", sensorDataArrayList);
+                intent.putExtra("bundle", bundle);
+                startActivity(intent);
+            }
+        });
         fetchUserData();
     }
 

@@ -35,8 +35,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private ViewpagerAdapter viewpagerAdapter;
     public ViewPager viewPager;
     private ImageView settings, live, statistics, contactUs;
-    private final int SETTINGS = 0, LIVE = 1, STATS = 2, CONTACT_US = 3;
+    private final int SETTINGS = 0, LIVE = 1, STATS = 2, CONTACT_US = 3, ABOUT_US = 4;
     private String username;
+    private TextView aboutUs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please Wait...");
         progressDialog.setCancelable(false);
+        aboutUs = findViewById(R.id.aboutUs);
         viewPager = findViewById(R.id.viewPager);
         viewpagerAdapter = new ViewpagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewpagerAdapter);
@@ -66,6 +68,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         live.setOnClickListener(this);
         statistics.setOnClickListener(this);
         contactUs.setOnClickListener(this);
+        aboutUs.setOnClickListener(this);
     }
 
     @Override
@@ -112,6 +115,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             viewPager.setCurrentItem(STATS);
         }else if(view == contactUs){
             viewPager.setCurrentItem(CONTACT_US);
+        }else if(view == aboutUs){
+            viewPager.setCurrentItem(ABOUT_US);
         }
     }
 

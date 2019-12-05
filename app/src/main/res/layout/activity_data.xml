@@ -45,6 +45,21 @@
             android:textStyle="bold"
             android:textColor="@color/white"
             />
+
+        <TextView
+            android:id="@+id/charts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="Chart"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:layout_centerVertical="true"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:background="?attr/selectableItemBackground"
+            />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
 

@@ -10,7 +10,7 @@
         android:id="@+id/contactUs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ContactUs"
+        android:text="AboutUs"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,11 +27,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contactUs"
         android:layout_marginTop="40dp"
+        android:padding="20dp"
         android:textSize="20sp"
-        android:text="Email: Autipro1999@gmail.com
-        \nPhone #: +965 رقم وهمي
-        \nTwitter: AutiProKU
-        \nInstagram: autipro"
+        android:text="Autipro is a system that helps you watch over you autistic relative anywhere, get notified on certain dangerous situations with an option of live streaming and adding new dangerous movement.
+
+\nAutipro was founded in 2019 by a group of computer engineering students who were interested in finding out more about Autism.
+
+\nOur main aim is to ensure the safety of people with autism by informing their guardians about any dangerous situation they fall into."
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

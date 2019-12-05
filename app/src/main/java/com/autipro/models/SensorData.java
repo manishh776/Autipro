@@ -1,6 +1,11 @@
 package com.autipro.models;
 
-public class SensorData {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class SensorData implements Serializable {
     private DHT11 dht11;
     private String HeartSens1, HeartSens2, MuscleSens, SoundDetector;
     private String Time, Vibration, WaterSens;
@@ -51,4 +56,5 @@ public class SensorData {
     public String getWaterSens() {
         return WaterSens;
     }
+
 }
