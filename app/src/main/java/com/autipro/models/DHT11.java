@@ -12,6 +12,14 @@ public class DHT11 {
         Temp = temp;
     }
 
+    public void setHum(String hum) {
+        Hum = hum;
+    }
+
+    public void setTemp(String temp) {
+        Temp = temp;
+    }
+
     public String getHum() {
         return Hum;
     }

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,7 +39,8 @@ public class DataActivity extends AppCompatActivity {
     private String loudnessLimit;
     private String runningLimit, drowningLimit;
     private TextView charts;
-
+    private int age;
+    private String TAG = "DataActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +93,7 @@ public class DataActivity extends AppCompatActivity {
                     loudnessLimit = user.getLoudVoice();
                     runningLimit = user.getRunning();
                     drowningLimit = user.getDrowning();
+                    age = Integer.parseInt(user.getAge());
                     fetchData();
                 }
             }
@@ -111,10 +114,11 @@ public class DataActivity extends AppCompatActivity {
                 progressDialog.dismiss();
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                     SensorData sensorData = data.getValue(SensorData.class);
-                    if (sensorData != null)
+                    if (sensorData != null){
                         sensorDataArrayList.add(sensorData);
-
+                    }
                 }
+                Log.d(TAG, "SIZE" + sensorDataArrayList.size());
                 if(sensorDataArrayList.isEmpty()){
                     recyclerViewData.setVisibility(View.GONE);
                     nodatatext.setVisibility(View.VISIBLE);
@@ -129,7 +133,8 @@ public class DataActivity extends AppCompatActivity {
                     }else if(type == DataType.Sensor.DROWNING){
                         limit = drowningLimit;
                     }
-                    dataAdapter = new DataAdapter(DataActivity.this, sensorDataArrayList, type, limit);
+                    dataAdapter = new DataAdapter(DataActivity.this, sensorDataArrayList,
+                            type, limit, age);
                     recyclerViewData.setAdapter(dataAdapter);
                 }
             }

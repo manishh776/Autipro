@@ -112,11 +112,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             if(username.equals("admin"))
             openPlaceCallActivity();
         }else if(view == statistics){
-            viewPager.setCurrentItem(STATS);
+            viewPager.setCurrentItem(ABOUT_US);
         }else if(view == contactUs){
             viewPager.setCurrentItem(CONTACT_US);
         }else if(view == aboutUs){
-            viewPager.setCurrentItem(ABOUT_US);
+            viewPager.setCurrentItem(STATS);
         }
     }
 

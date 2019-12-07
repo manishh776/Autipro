@@ -6,16 +6,16 @@ import android.os.Parcelable;
 import java.io.Serializable;
 
 public class SensorData implements Serializable {
-    private DHT11 dht11;
+    private DHT11 DHT11;
     private String HeartSens1, HeartSens2, MuscleSens, SoundDetector;
     private String Time, Vibration, WaterSens;
 
     public SensorData(){
     }
 
-    public SensorData(DHT11 dht11, String heartSens1, String heartSens2, String muscleSens,
+    public SensorData(DHT11 DHT11, String heartSens1, String heartSens2, String muscleSens,
                       String soundDetector, String time, String vibration, String waterSens) {
-        this.dht11 = dht11;
+        this.DHT11 = DHT11;
         HeartSens1 = heartSens1;
         HeartSens2 = heartSens2;
         MuscleSens = muscleSens;
@@ -26,7 +26,7 @@ public class SensorData implements Serializable {
     }
 
     public DHT11 getDht11() {
-        return dht11;
+        return DHT11;
     }
 
     public String getHeartSens1() {

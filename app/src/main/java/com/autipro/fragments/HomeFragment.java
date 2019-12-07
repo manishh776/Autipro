@@ -29,7 +29,7 @@ import androidx.fragment.app.Fragment;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
-    private RelativeLayout running, drowning, loudVoices;
+    private RelativeLayout running, drowning, loudVoices, detectTantrum;
     private ImageView notificationTag;
     private TextView noofNotifications;
     private String TAG = HomeFragment.class.getSimpleName();
@@ -48,12 +48,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         loudVoices = view.findViewById(R.id.loudVoicesContainer);
         notificationTag = view.findViewById(R.id.notificationTag);
         noofNotifications = view.findViewById(R.id.noOfNotifications);
+        detectTantrum = view.findViewById(R.id.detectTantrum);
 
         running.setOnClickListener(this);
         drowning.setOnClickListener(this);
         loudVoices.setOnClickListener(this);
         notificationTag.setOnClickListener(this);
-
+        detectTantrum.setOnClickListener(this);
     }
 
     @Override
@@ -107,6 +108,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             type = DataType.Sensor.DROWNING;
         } else if (view == loudVoices){
             type = DataType.Sensor.LOUD_VOICES;
+        }else if(view == detectTantrum){
+            type = DataType.Sensor.TANTRUM;
         }
         intent.putExtra("type", type);
         startActivity(intent);
