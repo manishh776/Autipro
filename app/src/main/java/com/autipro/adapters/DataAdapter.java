@@ -96,22 +96,25 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
                     if (!isHeartRateNormal(age, heartRate)
                             && !isTemperatureNormal(age,
                             temp) && hum > 80 && sensorData.getVibration().equals("Not Runing") && muscleSens > 200) {
-                        data = "Tantrum Detected + \n" + "HeartRate = " + heartRate + "\n" +
+                        data = "Tantrum Detected  \n" + "HeartRate = " + heartRate + "\n" +
                                 "Temperature = " + temp + "\n" + "Humidity = " + hum + "\n" +
                                 "Muscle = " + muscleSens;
                         bg_color = context.getResources().getColor(R.color.red);
                         Log.d(TAG, heartRate + "HEARTRATE" + isHeartRateNormal(age, heartRate) + " " + isTemperatureNormal(age,
                                 temp));
                     }else{
-                        data = "No Tantrum Detected + \n" + "HeartRate = \n"+
-                                "Temperature = \n" + "Humidity = \n" +
-                                "Muscle = ";
+                        data = "No Tantrum Detected  \n" + "HeartRate = " + heartRate + "\n" +
+                                "Temperature = " + temp + "\n" + "Humidity = " + hum + "\n" +
+                                "Muscle = " + muscleSens;
                         bg_color = context.getResources().getColor(R.color.green);
                     }
                 }else{
-                    data = "No Tantrum Detected \n" + "HeartRate = \n"+
-                            "Temperature = \n" + "Humidity = \n" +
-                            "Muscle = ";
+                    int temp = sensorData.getDht11()!=null ? Integer.parseInt(sensorData.getDht11().getTemp()) : 0;
+                    int hum = sensorData.getDht11()!=null ? Integer.parseInt(sensorData.getDht11().getHum()): 0;
+                    int muscleSens = sensorData.getMuscleSens()!=null? Integer.parseInt(sensorData.getMuscleSens()) : 0;
+                    data = "No Tantrum Detected \n" + "HeartRate = +" + sensorData.getHeartSens1()+"\n"+
+                            "Temperature = "+temp+"\n" + "Humidity = "+hum + "\n" +
+                            "Muscle = " + muscleSens;
                     bg_color = context.getResources().getColor(R.color.green);
                 }
             }
